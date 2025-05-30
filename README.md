@@ -1,34 +1,78 @@
-# Esteira de Aprendizado de Máquina: Car Evaluation Dataset
+# 🚗 Classificação de Carros com Machine Learning
 
-Este projeto apresenta uma esteira completa de aprendizado de máquina utilizando o dataset [Car Evaluation](https://archive.ics.uci.edu/dataset/19/car+evaluation) do UCI Machine Learning Repository.
+Este projeto utiliza o dataset **Car Evaluation** do UCI Machine Learning Repository para treinar um modelo de **classificação automática** da qualidade de carros com base em características como preço, número de portas, segurança, entre outros.
 
-## Objetivo
+---
 
-Prever a aceitabilidade de um carro com base em atributos como preço, manutenção, número de portas, capacidade, tamanho do porta-malas e segurança.
+## 🧠 Objetivo
 
-## Estrutura do Notebook
+Prever a **aceitabilidade de um carro** (inaceitável, aceitável, bom ou muito bom) com base em atributos como:
 
-- **Importação de bibliotecas**
-- **Carregamento e análise exploratória dos dados**
-- **Pré-processamento** (tratamento de categorias, remoção de duplicatas)
-- **Divisão dos dados** em treino, validação e teste
-- **Treinamento e avaliação de modelo** (Regressão Logística)
-- **Visualização dos resultados** (matriz de confusão, distribuição das classes)
-- **Exemplo de predição**
+- Preço de compra
+- Custo de manutenção
+- Número de portas
+- Capacidade de passageiros
+- Tamanho do porta-malas
+- Nível de segurança
 
-## Como executar
+---
 
-1. Abra o notebook `gustavo_notebook.ipynb` em um ambiente Jupyter ou VSCode.
-2. Execute as células sequencialmente.
-3. Certifique-se de ter as seguintes dependências instaladas:
-   - pandas
-   - numpy
-   - scikit-learn
-   - matplotlib
-   - seaborn
+## 📁 Dataset
 
-## Observações
+- **Fonte**: [UCI Machine Learning Repository - Car Evaluation](https://archive.ics.uci.edu/ml/datasets/car+evaluation)
+- **Instâncias**: 1.728
+- **Atributos**: 6 atributos categóricos + 1 variável alvo (`class`)
+- **Classes**: `unacc`, `acc`, `good`, `vgood` (desbalanceadas)
 
-- O dataset é carregado diretamente da internet.
-- O pipeline utiliza codificação one-hot para variáveis categóricas.
-- O modelo avaliado é uma Regressão Logística.
+---
+
+## 🛠️ Tecnologias e Bibliotecas
+
+- Python 3.x
+- Pandas e NumPy
+- Scikit-learn (Pipeline, LogisticRegression, OneHotEncoder)
+- Matplotlib e Seaborn (visualização)
+
+---
+
+## 🧪 Pipeline de Machine Learning
+
+1. **Carregamento dos dados**
+2. **Tratamento da coluna `'doors'`**  
+   → Substituímos `'5more'` por `'5'` para simplificar o pré-processamento.
+3. **Remoção de duplicatas**
+4. **Separação dos dados em treino (60%), validação (20%) e teste (20%)**
+5. **Criação de pipeline com:**
+   - `OneHotEncoder` para codificação de variáveis categóricas
+   - `LogisticRegression` para classificação (com `max_iter=200`)
+6. **Treinamento e avaliação do modelo**
+   - Métrica principal: **acurácia**
+   - Avaliação com matriz de confusão
+
+---
+
+## 📊 Resultados
+
+- **Acurácia na validação**: ~X.XX (exemplo: `0.85`)
+- **Acurácia no teste**: ~X.XX
+- **Desbalanceamento de classes identificado**
+  - A maior parte dos dados pertence à classe `unacc`
+  - Recomenda-se usar `class_weight='balanced'` ou técnicas de reamostragem para melhorias futuras
+
+---
+
+## 📈 Visualizações incluídas
+
+- Distribuição das classes (`class`)
+- Gráficos de barras para cada atributo categórico
+- Matriz de confusão (heatmap)
+
+---
+
+## 📌 Exemplo de predição
+
+O modelo também pode fazer predições para novos carros. Exemplo:
+
+```python
+sample = X_test.iloc[[0]]
+pipeline.predict(sample)
