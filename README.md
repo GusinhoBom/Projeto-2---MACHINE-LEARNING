@@ -1,3 +1,5 @@
+Link do vídeo - https://youtu.be/omiA0B14bCA
+
 # 🚗 Classificação de Carros com Machine Learning
 
 Este projeto utiliza o dataset **Car Evaluation** do UCI Machine Learning Repository para treinar um modelo de **classificação automática** da qualidade de carros com base em características como preço, número de portas, segurança, entre outros.
